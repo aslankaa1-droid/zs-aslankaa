@@ -1,0 +1,60 @@
+{
+  "name": "Земельный Сервис",
+  "short_name": "Земельный Сервис",
+  "description": "Сервис для собственников земельных участков. Защита от изъятия по 101-ФЗ, помощь со штрафами, подготовка документов с подключением аккредитованных юристов.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f5f0",
+  "theme_color": "#2f5d3a",
+  "lang": "ru",
+  "dir": "ltr",
+  "categories": ["legal", "agriculture", "productivity", "business"],
+  "icons": [
+    {
+      "src": "assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/illustrations/hero-satellite-field.svg",
+      "sizes": "800x500",
+      "type": "image/svg+xml",
+      "label": "Мониторинг земельных участков"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Открыть прототип",
+      "short_name": "Прототип",
+      "url": "/prototype.html",
+      "description": "Интерактивный прототип мобильного приложения"
+    },
+    {
+      "name": "Услуги и стратегии",
+      "short_name": "Услуги",
+      "url": "/services.html"
+    },
+    {
+      "name": "7 регионов",
+      "short_name": "Регионы",
+      "url": "/regions.html"
+    }
+  ]
+}

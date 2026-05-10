@@ -1,0 +1,1142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2f5d3a">
+<meta name="description" content="Interactive prototype of the Zemelny Service mobile application. All 17 screens with navigation and AI scenario simulation. Runs in any browser.">
+<title>Application prototype — Zemelny Service</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<style>
+  /* === Prototype-specific styles === */
+  body { background: var(--bg); }
+  .proto-page {
+    min-height: calc(100vh - 80px);
+    padding: 32px 0 64px;
+  }
+
+  .proto-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .proto-layout {
+      grid-template-columns: 380px 1fr;
+      gap: 48px;
+    }
+  }
+
+  /* Phone frame */
+  .phone-wrap { display: flex; justify-content: center; }
+  .phone {
+    width: 360px;
+    max-width: 100%;
+    aspect-ratio: 9 / 19.5;
+    background: #1f2a24;
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow:
+      0 20px 60px rgba(31, 42, 36, 0.18),
+      0 8px 16px rgba(31, 42, 36, 0.10),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+  }
+  .phone::before {
+    content: "";
+    position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 28px;
+    background: #0a0d0b;
+    border-radius: 0 0 16px 16px;
+    z-index: 10;
+  }
+  .phone-screen {
+    width: 100%; height: 100%;
+    background: var(--paper);
+    border-radius: 32px;
+    overflow: auto;
+    position: relative;
+  }
+
+  /* Screens */
+  .app-screen {
+    display: none;
+    width: 100%;
+    min-height: 100%;
+    padding: 56px 20px 24px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .app-screen.active { display: flex; flex-direction: column; }
+
+  /* Status bar */
+  .app-statusbar {
+    position: absolute;
+    top: 16px; left: 28px; right: 28px; z-index: 20;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.7rem; font-weight: 600;
+    color: var(--ink);
+    pointer-events: none;
+  }
+
+  /* Splash */
+  .splash {
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2f5d3a 0%, #1f3f26 100%) !important;
+    color: white !important;
+  }
+  .splash-logo {
+    width: 80px; height: 80px;
+    background: white;
+    color: var(--accent);
+    border-radius: 20px;
+    display: grid; place-items: center;
+    font-size: 1.5rem; font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .splash h1 { color: white; font-size: 1.4rem; margin-bottom: 8px; }
+  .splash p { color: rgba(255,255,255,0.85); font-size: 0.85rem; text-align: center; }
+
+  /* Header in screens */
+  .app-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  }
+  .app-header__back {
+    width: 36px; height: 36px;
+    background: var(--paper-soft);
+    border: none;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .app-header__back:hover { background: var(--accent-soft); color: var(--accent); }
+  .app-header__title { font-size: 1.05rem; font-weight: 700; flex: 1; }
+  .app-header__action {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  /* Common app components */
+  .app-h1 { font-size: 1.5rem; line-height: 1.2; margin: 0 0 8px; }
+  .app-subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+  .app-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--ink);
+    box-sizing: border-box;
+    margin-bottom: 12px;
+  }
+  .app-input:focus { outline: none; border-color: var(--accent); }
+  .app-input::placeholder { color: var(--muted); }
+
+  .app-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 120ms ease;
+  }
+  .app-btn:hover { background: var(--accent-dark); }
+  .app-btn--ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+  .app-btn--ghost:hover { background: var(--accent-soft); }
+  .app-btn--esia {
+    background: #0066cc;
+    color: white;
+  }
+  .app-btn--esia:hover { background: #0052a3; }
+
+  .app-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+
+  /* Risk card */
+  .risk-card {
+    background: var(--paper-soft);
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .risk-card--high { background: var(--warn-soft); border-color: var(--warn); }
+  .risk-card--medium { background: var(--gold-soft); border-color: var(--gold); }
+  .risk-card--low { background: var(--accent-soft); border-color: var(--accent); }
+
+  .risk-level {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .risk-level--high { background: var(--warn); color: white; }
+  .risk-level--medium { background: var(--gold); color: white; }
+  .risk-level--low { background: var(--accent); color: white; }
+
+  .risk-card h3 { font-size: 1rem; margin: 0 0 6px; }
+  .risk-card p { font-size: 0.85rem; color: var(--ink-soft); margin: 0; }
+  .risk-card .meta { font-size: 0.75rem; color: var(--muted); margin-top: 8px; }
+
+  /* List item */
+  .app-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 12px;
+    border-radius: 10px;
+    background: var(--paper-soft);
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 100ms ease;
+  }
+  .app-list-item:hover { background: var(--accent-soft); }
+  .app-list-item__icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .app-list-item__body { flex: 1; min-width: 0; }
+  .app-list-item__title { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 0; }
+  .app-list-item__sub { font-size: 0.8rem; color: var(--muted); margin: 2px 0 0; }
+  .app-list-item__chev { color: var(--muted); flex-shrink: 0; }
+
+  /* Step list */
+  .step-list { list-style: none; padding: 0; margin: 16px 0; }
+  .step-list li {
+    padding: 12px 14px 12px 44px;
+    background: var(--paper-soft);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+  .step-list li::before {
+    content: counter(step);
+    counter-increment: step;
+    position: absolute; left: 14px; top: 12px;
+    width: 22px; height: 22px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .step-list { counter-reset: step; }
+  .step-list li.done {
+    background: var(--accent-soft);
+    color: var(--ink-soft);
+    text-decoration: line-through;
+  }
+  .step-list li.done::before { background: var(--accent-dark); content: "✓"; }
+  .step-list li.active { background: var(--gold-soft); border-left: 3px solid var(--gold); padding-left: 41px; }
+  .step-list li.active::before { background: var(--gold); }
+  .step-list li .due { font-size: 0.7rem; color: var(--muted); display: block; margin-top: 2px; }
+
+  /* Tabs (bottom navigation) */
+  .app-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 12px 8px 16px;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+    margin: 16px -20px -24px;
+  }
+  .app-tab {
+    flex: 1;
+    text-align: center;
+    padding: 6px;
+    color: var(--muted);
+    font-size: 0.7rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .app-tab svg { display: block; margin: 0 auto 2px; }
+  .app-tab.active { color: var(--accent); }
+
+  /* Chat */
+  .chat-screen { display: flex; flex-direction: column; height: 100%; }
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .chat-msg {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+  .chat-msg--user {
+    align-self: flex-end;
+    background: var(--accent);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+  .chat-msg--assistant {
+    align-self: flex-start;
+    background: var(--paper-soft);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    border: 1px solid var(--line);
+  }
+  .chat-msg__cite { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .chat-citation {
+    font-size: 0.65rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .chat-input-wrap {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0 0;
+    border-top: 1px solid var(--line);
+    margin-top: 12px;
+  }
+  .chat-input-wrap input {
+    flex: 1;
+    padding: 12px 14px;
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .chat-input-wrap input:focus { outline: none; border-color: var(--accent); }
+  .chat-input-wrap button {
+    width: 42px; height: 42px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid; place-items: center;
+  }
+
+  /* Loading overlay */
+  .loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(31, 42, 36, 0.65);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 50;
+    border-radius: 32px;
+  }
+  .loading-overlay.active { display: flex; }
+  .loading-spinner {
+    width: 40px; height: 40px;
+    border: 3px solid rgba(255,255,255,0.2);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 800ms linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-overlay div { color: white; font-size: 0.85rem; max-width: 220px; text-align: center; }
+
+  /* Toast */
+  .app-toast {
+    position: absolute;
+    bottom: 80px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+    z-index: 60;
+    white-space: nowrap;
+  }
+  .app-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Sidebar with screen list */
+  .proto-sidebar h2 { font-size: 1.4rem; margin-bottom: 12px; }
+  .proto-sidebar p.lead { font-size: 1rem; }
+  .screen-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .screen-link {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 120ms ease, background 120ms ease;
+    color: var(--ink);
+  }
+  .screen-link:hover { border-color: var(--accent); background: var(--accent-bg); color: var(--ink); }
+  .screen-link__num {
+    width: 32px; height: 32px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-size: 0.85rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .screen-link__body { flex: 1; min-width: 0; }
+  .screen-link__title { font-size: 0.95rem; font-weight: 600; margin: 0; }
+  .screen-link__sub { font-size: 0.75rem; color: var(--muted); margin: 2px 0 0; }
+
+  /* Document item */
+  .doc-item {
+    background: var(--paper-soft);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .doc-item__icon {
+    width: 36px; height: 36px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .doc-item__body { flex: 1; }
+  .doc-item__title { font-size: 0.9rem; font-weight: 600; margin: 0; }
+  .doc-item__status { font-size: 0.75rem; color: var(--muted); margin: 2px 0 0; }
+  .doc-item__status.signed { color: var(--accent); font-weight: 600; }
+
+  /* Lawyer card */
+  .lawyer-card {
+    background: var(--paper-soft);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 100ms ease;
+  }
+  .lawyer-card:hover { background: var(--accent-soft); }
+  .lawyer-card.featured { border: 2px solid var(--accent); background: var(--accent-bg); }
+  .lawyer-card__head { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
+  .lawyer-card__avatar {
+    width: 44px; height: 44px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .lawyer-card__name { font-size: 0.95rem; font-weight: 600; margin: 0; }
+  .lawyer-card__rating { font-size: 0.8rem; color: var(--muted); }
+  .lawyer-card__rating strong { color: var(--gold); }
+  .lawyer-card__tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .lawyer-card__tag {
+    font-size: 0.7rem;
+    background: white;
+    color: var(--ink-soft);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  /* OTP input */
+  .otp-wrap { display: flex; gap: 8px; justify-content: center; margin: 16px 0; }
+  .otp-cell {
+    width: 44px; height: 56px;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--paper-soft);
+    line-height: 56px;
+  }
+  .otp-cell.filled { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+
+  /* Payment summary */
+  .pay-row {
+    display: flex; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 0.9rem;
+  }
+  .pay-row.total { font-weight: 700; font-size: 1.05rem; padding-top: 14px; border-top: 2px solid var(--ink); border-bottom: none; }
+  .pay-row span:first-child { color: var(--muted); }
+
+  /* Success animation */
+  .success-icon {
+    width: 80px; height: 80px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: white;
+    margin: 32px auto 24px;
+  }
+</style>
+<link rel="alternate" hreflang="ru" href="../prototype.html">
+<link rel="alternate" hreflang="en" href="../en/prototype.html">
+<link rel="alternate" hreflang="fr" href="../fr/prototype.html">
+<link rel="alternate" hreflang="ar" href="../ar/prototype.html">
+<link rel="alternate" hreflang="x-default" href="../prototype.html">
+<link rel="manifest" href="../manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="brand"><span class="brand-mark">ЗС</span><span>Земельный Сервис</span><span class="brand-tag">beta</span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a href="how-it-works.html">How it works</a><a href="regions.html">Regions</a><a href="prototype.html">Prototype</a><a href="for-investors.html">For investors</a><a href="about.html">About</a>
+    </nav>
+    <div class="nav-cta"><a href="contacts.html" class="btn btn-primary btn-sm">Contact us</a></div>
+    <button class="nav-toggle" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  </div>
+  <div class="nav-mobile container">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="how-it-works.html">How it works</a><a href="regions.html">Regions</a><a href="prototype.html">Prototype</a><a href="for-investors.html">For investors</a><a href="about.html">About</a><a href="contacts.html" class="btn btn-primary">Contact us</a>
+  </div>
+</header>
+
+<main id="main" class="proto-page">
+  <div class="container proto-layout">
+
+    <!-- ============ Phone Frame ============ -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen">
+
+          <div class="app-statusbar">
+            <span>9:41</span>
+            <span>● ● ●</span>
+          </div>
+
+          <!-- ============ SCREEN 1: Splash ============ -->
+          <div class="app-screen splash" id="screen-splash">
+            <div class="splash-logo">ЗС</div>
+            <h1>Zemelny Service</h1>
+            <p>Protecting your land plot</p>
+          </div>
+
+          <!-- ============ SCREEN 2: Login ============ -->
+          <div class="app-screen" id="screen-login">
+            <h1 class="app-h1">Sign in to Zemelny Service</h1>
+            <p class="app-subtitle">Fast sign-in via Gosuslugi — your profile is pre-filled automatically.</p>
+
+            <button class="app-btn app-btn--esia" onclick="simulateEsiaLogin()" style="margin-bottom: 12px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="display: inline; vertical-align: middle; margin-right: 8px;"><path d="M12 2L2 7v10c0 5 4 9 10 9s10-4 10-9V7l-10-5z"/></svg>
+              Sign in via Gosuslugi
+            </button>
+            <button class="app-btn app-btn--ghost" data-go="login-sms">Sign in with an SMS code</button>
+
+            <p class="app-label" style="margin-top: 32px;">Documents</p>
+            <p style="font-size: 0.8rem; color: var(--muted); margin: 0;">
+              By signing up, you accept the <a href="#" style="color: var(--accent);">public offer</a>, the <a href="#" style="color: var(--accent);">personal data policy</a> and the <a href="#" style="color: var(--accent);">SES agreement</a>.
+            </p>
+          </div>
+
+          <!-- ============ SCREEN 3: Login SMS ============ -->
+          <div class="app-screen" id="screen-login-sms">
+            <div class="app-header">
+              <button class="app-header__back" data-back aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">SMS sign-in</h2>
+            </div>
+
+            <p class="app-label">Phone number</p>
+            <input class="app-input" type="tel" placeholder="+7 (___) ___-__-__" value="+7 (916) 123-45-67">
+            <button class="app-btn" data-go="otp-verify">Send code</button>
+
+            <p style="font-size: 0.75rem; color: var(--muted); margin-top: 16px;">
+              The code is sent through the certified Devino SMS gateway (Russian Federation jurisdiction).
+            </p>
+          </div>
+
+          <!-- ============ SCREEN 4: OTP ============ -->
+          <div class="app-screen" id="screen-otp-verify">
+            <div class="app-header">
+              <button class="app-header__back" data-back aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">Enter the code</h2>
+            </div>
+
+            <p class="app-subtitle">We have sent an SMS to +7 (916) 123-45-67</p>
+
+            <div class="otp-wrap">
+              <div class="otp-cell filled">9</div>
+              <div class="otp-cell filled">6</div>
+              <div class="otp-cell filled">7</div>
+              <div class="otp-cell filled">2</div>
+              <div class="otp-cell">_</div>
+              <div class="otp-cell">_</div>
+            </div>
+
+            <button class="app-btn" onclick="simulateEsiaLogin()">Confirm</button>
+            <button class="app-btn app-btn--ghost" style="margin-top: 8px;">Resend code</button>
+          </div>
+
+          <!-- ============ SCREEN 5: Home (Dashboard) ============ -->
+          <div class="app-screen" id="screen-home">
+            <div class="app-header">
+              <h2 class="app-header__title">Hello, <span data-bind="user.name">Ivan</span>!</h2>
+              <button class="app-header__action" data-go="profile">⋯</button>
+            </div>
+
+            <div class="risk-card risk-card--high">
+              <span class="risk-level risk-level--high">⚠ High risk</span>
+              <h3>Tver · 4.5 ha · agricultural</h3>
+              <p>Indicators of non-use under 101-FZ. Your attention is required.</p>
+              <div class="meta">Cadastre: 69:10:0152801:425</div>
+            </div>
+
+            <p class="app-label">Actions</p>
+            <div class="app-list-item" data-go="case-detail">
+              <div class="app-list-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              </div>
+              <div class="app-list-item__body">
+                <h4 class="app-list-item__title">Open case CASE-2026-0042</h4>
+                <p class="app-list-item__sub">5 steps · 3 done · by 14.11.2026</p>
+              </div>
+              <svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+
+            <p class="app-label">Quick actions</p>
+            <div class="app-list-item" data-go="add-parcel">
+              <div class="app-list-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="app-list-item__body">
+                <h4 class="app-list-item__title">Add a land plot</h4>
+                <p class="app-list-item__sub">By cadastre / address</p>
+              </div>
+              <svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+
+            <div class="app-list-item" data-go="ai-chat">
+              <div class="app-list-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="app-list-item__body">
+                <h4 class="app-list-item__title">Ask the legal chat</h4>
+                <p class="app-list-item__sub">AI-4 · answers with citations to articles</p>
+              </div>
+              <svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+
+            <div class="app-tabs">
+              <div class="app-tab active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
+                Home
+              </div>
+              <div class="app-tab" data-go="add-parcel">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4l-6 2v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg>
+                Plots
+              </div>
+              <div class="app-tab" data-go="ai-chat">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Chat
+              </div>
+              <div class="app-tab" data-go="profile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/></svg>
+                Profile
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ SCREEN 6: Add Parcel ============ -->
+          <div class="app-screen" id="screen-add-parcel">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">Add a land plot</h2>
+            </div>
+
+            <p class="app-label">Cadastral number</p>
+            <input class="app-input" placeholder="50:23:0010101:123" value="69:10:0152801:425">
+
+            <p class="app-label">or Address</p>
+            <input class="app-input" placeholder="Tver Region, ...">
+
+            <p class="app-label">or Geolocation</p>
+            <button class="app-btn app-btn--ghost" style="margin-bottom: 24px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; vertical-align: middle; margin-right: 6px;"><circle cx="12" cy="10" r="3"/><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/></svg>
+              Use GPS
+            </button>
+
+            <button class="app-btn" onclick="simulateParcelLookup()">Pull the USRN extract</button>
+
+            <p style="font-size: 0.75rem; color: var(--muted); margin-top: 16px;">
+              The extract is requested via Kontur.Reestro. The cost is included in the plan.
+            </p>
+          </div>
+
+          <!-- ============ SCREEN 7: Diagnose Result ============ -->
+          <div class="app-screen" id="screen-diagnose-result">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">Diagnostics</h2>
+            </div>
+
+            <h1 class="app-h1">High seizure risk</h1>
+            <p class="app-subtitle">AI-2 has analysed the USRN extract and 3 years of satellite data.</p>
+
+            <div class="risk-card risk-card--high">
+              <span class="risk-level risk-level--high">⚠ High</span>
+              <h3>69:10:0152801:425</h3>
+              <p>Tver Region, Kashin district, village of Novinki · 4.5 ha</p>
+              <div class="meta">Category: agricultural · PUT: for agricultural production</div>
+            </div>
+
+            <p class="app-label">Indicators of violation found</p>
+            <div style="background: var(--paper-soft); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 0.85rem;">
+              <strong>No signs of cultivation</strong><br>
+              <span style="color: var(--muted); font-size: 0.8rem;">Per satellite data, 70% of the area has not been cultivated for 3 years. PP-826 section 2.</span>
+            </div>
+            <div style="background: var(--paper-soft); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 0.85rem;">
+              <strong>Missing declarations</strong><br>
+              <span style="color: var(--muted); font-size: 0.8rem;">No declarations have been filed with the Tver Region Ministry of Agriculture since 2023. FZ-307.</span>
+            </div>
+            <div style="background: var(--paper-soft); border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; font-size: 0.85rem;">
+              <strong>Weed overgrowth</strong><br>
+              <span style="color: var(--muted); font-size: 0.8rem;">25% of the area is affected. PP-826 section 3 (threshold — 20%).</span>
+            </div>
+
+            <button class="app-btn" onclick="simulateOpenCase()">Open the "Reclamation" case</button>
+            <button class="app-btn app-btn--ghost" style="margin-top: 8px;" data-go="ai-chat">Ask the consultant chat first</button>
+          </div>
+
+          <!-- ============ SCREEN 8: Case Plan ============ -->
+          <div class="app-screen" id="screen-case-plan">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">Reclamation plan</h2>
+            </div>
+
+            <h1 class="app-h1">Recommendation: S-1</h1>
+            <p class="app-subtitle">Land Use Restoration. In the Tver Region, a subsidy of up to 80K RUB/ha applies.</p>
+
+            <p class="app-label">5 steps by 14.11.2026</p>
+            <ol class="step-list">
+              <li>Order ploughing from a local contractor<span class="due">due: 31.05.2026</span></li>
+              <li>Sign a contract for sowing spring wheat<span class="due">due: 15.06.2026</span></li>
+              <li>File a declaration with the Tver Region Ministry of Agriculture<span class="due">due: 01.03.2027</span></li>
+              <li>Upload acts and GPS-tagged photos<span class="due">on a rolling basis</span></li>
+              <li>Notify Rosselkhoznadzor of completion<span class="due">due: 14.11.2026</span></li>
+            </ol>
+
+            <button class="app-btn" data-go="case-detail">Accept the plan and start</button>
+            <button class="app-btn app-btn--ghost" style="margin-top: 8px;" onclick="simulateLawyerMatch()">Engage a lawyer</button>
+          </div>
+
+          <!-- ============ SCREEN 9: Case Detail ============ -->
+          <div class="app-screen" id="screen-case-detail">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">CASE-2026-0042</h2>
+              <button class="app-header__action">Menu</button>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-bottom: 16px; padding: 10px; background: var(--accent-soft); border-radius: 10px;">
+              <div style="flex: 1; text-align: center;"><strong style="display: block; color: var(--accent);">3 / 5</strong><span style="font-size: 0.7rem; color: var(--muted);">steps</span></div>
+              <div style="flex: 1; text-align: center;"><strong style="display: block; color: var(--accent);">5 d</strong><span style="font-size: 0.7rem; color: var(--muted);">to deadline</span></div>
+              <div style="flex: 1; text-align: center;"><strong style="display: block; color: var(--accent);">S-1</strong><span style="font-size: 0.7rem; color: var(--muted);">strategy</span></div>
+            </div>
+
+            <p class="app-label">Steps</p>
+            <ol class="step-list">
+              <li class="done">Order ploughing from a contractor</li>
+              <li class="done">Sign a sowing contract</li>
+              <li class="done">File a declaration with the Ministry of Agriculture</li>
+              <li class="active">Upload acts and GPS-tagged photos<span class="due">today</span></li>
+              <li>Notify Rosselkhoznadzor<span class="due">due: 14.11.2026</span></li>
+            </ol>
+
+            <p class="app-label">Documents</p>
+            <div class="doc-item">
+              <div class="doc-item__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              </div>
+              <div class="doc-item__body">
+                <h4 class="doc-item__title">Explanatory letter</h4>
+                <p class="doc-item__status signed">✓ Signed with SES · 09.05.2026</p>
+              </div>
+            </div>
+            <div class="doc-item">
+              <div class="doc-item__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              </div>
+              <div class="doc-item__body">
+                <h4 class="doc-item__title">Restoration plan</h4>
+                <p class="doc-item__status">AI-3 draft · ready for signing</p>
+              </div>
+              <button class="app-btn" style="width: auto; padding: 8px 14px; font-size: 0.85rem;" data-go="pep-sign">Sign</button>
+            </div>
+          </div>
+
+          <!-- ============ SCREEN 10: SES Sign ============ -->
+          <div class="app-screen" id="screen-pep-sign">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">SES signing</h2>
+            </div>
+
+            <h1 class="app-h1">Sign the restoration plan</h1>
+            <p class="app-subtitle">Simple Electronic Signature under Article 5 of Federal Law 63-FZ on Electronic Signatures — via an SMS code.</p>
+
+            <div style="background: var(--paper-soft); border-radius: 10px; padding: 12px; margin-bottom: 16px; font-size: 0.85rem;">
+              <strong>Action plan for the restoration of land use</strong><br>
+              <span style="color: var(--muted);">Plot 69:10:0152801:425 · 4 pages</span>
+            </div>
+
+            <p class="app-label">Enter the code from the SMS</p>
+            <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 12px;">Sent to +7 (916) 123-45-67</p>
+
+            <div class="otp-wrap">
+              <div class="otp-cell filled">3</div>
+              <div class="otp-cell filled">7</div>
+              <div class="otp-cell filled">2</div>
+              <div class="otp-cell filled">9</div>
+              <div class="otp-cell filled">1</div>
+              <div class="otp-cell filled">5</div>
+            </div>
+
+            <button class="app-btn" onclick="simulatePepSign()">Sign with SES</button>
+
+            <p style="font-size: 0.7rem; color: var(--muted); margin-top: 16px; text-align: center;">
+              Signing captures the IP address, time and device. The log is retained for 5 years.
+            </p>
+          </div>
+
+          <!-- ============ SCREEN 11: AI Chat ============ -->
+          <div class="app-screen chat-screen" id="screen-ai-chat">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">AI-4 legal chat</h2>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+              <div class="chat-msg chat-msg--assistant">
+                <div class="chat-msg__body">Hello! I will answer any question on Federal Law 101-FZ on Agricultural Land Turnover, Federal Law 152-FZ on Personal Data, Federal Law 63-FZ on Electronic Signatures and Government Decree 826 (PP-826), with citations to articles. Try something — for example, "what is non-use?" or "what are the fines for personal data leaks?".</div>
+              </div>
+            </div>
+
+            <div class="chat-input-wrap">
+              <input id="chat-input" type="text" placeholder="Ask about the law…" autocomplete="off">
+              <button onclick="sendChatMessage()" aria-label="Send">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ============ SCREEN 12: Lawyers List ============ -->
+          <div class="app-screen" id="screen-lawyers-list">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">101-FZ lawyers</h2>
+            </div>
+
+            <p class="app-subtitle">AI-6 has selected 3 lawyers with the strongest experience in the Tver Region.</p>
+
+            <div class="lawyer-card featured" data-go="lawyer-detail">
+              <div class="lawyer-card__head">
+                <div class="lawyer-card__avatar">BD</div>
+                <div>
+                  <h4 class="lawyer-card__name">BOLSHOE DELO</h4>
+                  <div class="lawyer-card__rating"><strong>★ 4.9</strong> · 73 cases</div>
+                </div>
+              </div>
+              <div class="lawyer-card__tags">
+                <span class="lawyer-card__tag">101-FZ</span>
+                <span class="lawyer-card__tag">Kaluga office</span>
+                <span class="lawyer-card__tag">7 regions</span>
+              </div>
+            </div>
+
+            <div class="lawyer-card" data-go="lawyer-detail">
+              <div class="lawyer-card__head">
+                <div class="lawyer-card__avatar">SV</div>
+                <div>
+                  <h4 class="lawyer-card__name">Sotskova Valeriya V.</h4>
+                  <div class="lawyer-card__rating"><strong>★ 4.8</strong> · 246 cases · 21 years</div>
+                </div>
+              </div>
+              <div class="lawyer-card__tags">
+                <span class="lawyer-card__tag">101-FZ</span>
+                <span class="lawyer-card__tag">authored publications</span>
+                <span class="lawyer-card__tag">remote</span>
+              </div>
+            </div>
+
+            <div class="lawyer-card" data-go="lawyer-detail">
+              <div class="lawyer-card__head">
+                <div class="lawyer-card__avatar">CP</div>
+                <div>
+                  <h4 class="lawyer-card__name">CPO Group</h4>
+                  <div class="lawyer-card__rating"><strong>★ 4.7</strong> · TOP-50 RU</div>
+                </div>
+              </div>
+              <div class="lawyer-card__tags">
+                <span class="lawyer-card__tag">Agribusiness practice</span>
+                <span class="lawyer-card__tag">Moscow</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ SCREEN 13: Lawyer Detail ============ -->
+          <div class="app-screen" id="screen-lawyer-detail">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">BOLSHOE DELO</h2>
+            </div>
+
+            <div style="text-align: center; padding: 16px 0;">
+              <div style="width: 80px; height: 80px; background: var(--accent); color: white; border-radius: 50%; display: grid; place-items: center; font-size: 1.5rem; font-weight: 700; margin: 0 auto 12px;">BD</div>
+              <h2 style="margin: 0; font-size: 1.2rem;">"BOLSHOE DELO" law firm</h2>
+              <p style="margin: 4px 0; color: var(--muted); font-size: 0.85rem;">Accredited within Zemelny Service</p>
+              <div style="margin-top: 8px;">
+                <span style="font-weight: 700; color: var(--gold);">★ 4.9</span>
+                <span style="color: var(--muted); font-size: 0.85rem;"> · 73 closed cases</span>
+              </div>
+            </div>
+
+            <p class="app-label">Specialisation</p>
+            <p style="font-size: 0.9rem; color: var(--ink-soft);">Land disputes with Rosreestr, judicial registration of land, cadastral value, and challenges to land transactions. Direct experience in 101-FZ.</p>
+
+            <p class="app-label">Geography</p>
+            <p style="font-size: 0.9rem; color: var(--ink-soft);">Office in Kaluga. Handles cases in the Tver, Tula, Oryol Regions, Moscow and the Moscow Region.</p>
+
+            <p class="app-label">Cost for your case</p>
+            <div style="background: var(--accent-bg); border-radius: 10px; padding: 14px;">
+              <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent);">~ 35,000 RUB</div>
+              <p style="font-size: 0.85rem; color: var(--ink-soft); margin: 4px 0 0;">B-3 memorandum + paperwork support + AI-3 document review</p>
+            </div>
+
+            <button class="app-btn" style="margin-top: 24px;" data-go="payment">Engage the lawyer</button>
+          </div>
+
+          <!-- ============ SCREEN 14: Payment ============ -->
+          <div class="app-screen" id="screen-payment">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">Payment</h2>
+            </div>
+
+            <h1 class="app-h1">Engaging a lawyer</h1>
+            <p class="app-subtitle">Through the partner bank. Secure. Receipt issued under Federal Law 54-FZ.</p>
+
+            <div style="background: var(--paper-soft); border-radius: 10px; padding: 14px; margin-bottom: 16px;">
+              <div class="pay-row"><span>BOLSHOE DELO · memorandum</span><span>30,000 RUB</span></div>
+              <div class="pay-row"><span>AI-3 support</span><span>4,200 RUB</span></div>
+              <div class="pay-row"><span>Service fee</span><span>800 RUB</span></div>
+              <div class="pay-row total"><span>Total</span><span>35,000 RUB</span></div>
+            </div>
+
+            <p class="app-label">Payment method</p>
+            <div class="app-list-item" style="background: var(--accent-soft); border: 2px solid var(--accent);">
+              <div class="app-list-item__icon" style="background: var(--accent); color: white;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h0M15 9h0"/></svg>
+              </div>
+              <div class="app-list-item__body">
+                <h4 class="app-list-item__title">SBP (Faster Payments System)</h4>
+                <p class="app-list-item__sub">No commission · instant</p>
+              </div>
+            </div>
+            <div class="app-list-item">
+              <div class="app-list-item__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+              </div>
+              <div class="app-list-item__body">
+                <h4 class="app-list-item__title">Bank card</h4>
+                <p class="app-list-item__sub">Mir, Visa, MasterCard, UnionPay</p>
+              </div>
+            </div>
+
+            <button class="app-btn" data-go="payment-success">Pay 35,000 RUB</button>
+          </div>
+
+          <!-- ============ SCREEN 15: Payment Success ============ -->
+          <div class="app-screen" id="screen-payment-success">
+            <div class="success-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h1 class="app-h1" style="text-align: center;">Payment successful!</h1>
+            <p class="app-subtitle" style="text-align: center;">The lawyer has been notified and will accept the case within 4 hours.</p>
+
+            <div style="background: var(--accent-soft); border-radius: 10px; padding: 14px; margin: 16px 0;">
+              <div class="pay-row"><span>Payment</span><span>35,000 RUB</span></div>
+              <div class="pay-row"><span>Receipt</span><span style="color: var(--accent); font-weight: 600;">sent to email</span></div>
+              <div class="pay-row"><span>Transaction ID</span><span style="font-family: monospace;">PAY-7245-2026</span></div>
+            </div>
+
+            <button class="app-btn" data-go="case-detail">Go to the case</button>
+          </div>
+
+          <!-- ============ SCREEN 16: Documents ============ -->
+          <div class="app-screen" id="screen-documents">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">All documents</h2>
+            </div>
+
+            <p class="app-label">Signed</p>
+            <div class="doc-item">
+              <div class="doc-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="doc-item__body">
+                <h4 class="doc-item__title">Explanatory letter to Rosselkhoznadzor</h4>
+                <p class="doc-item__status signed">SES · 09.05.2026</p>
+              </div>
+            </div>
+            <div class="doc-item">
+              <div class="doc-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="doc-item__body">
+                <h4 class="doc-item__title">Restoration plan</h4>
+                <p class="doc-item__status signed">SES · 10.05.2026</p>
+              </div>
+            </div>
+
+            <p class="app-label">Drafts</p>
+            <div class="doc-item">
+              <div class="doc-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+              <div class="doc-item__body">
+                <h4 class="doc-item__title">Declaration to the Ministry of Agriculture</h4>
+                <p class="doc-item__status">AI-3 is drafting</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ SCREEN 17: Profile ============ -->
+          <div class="app-screen" id="screen-profile">
+            <div class="app-header">
+              <button class="app-header__back" data-back><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <h2 class="app-header__title">Profile</h2>
+            </div>
+
+            <div style="text-align: center; padding: 16px 0;">
+              <div style="width: 80px; height: 80px; background: var(--accent); color: white; border-radius: 50%; display: grid; place-items: center; font-size: 1.8rem; font-weight: 700; margin: 0 auto 12px;">IP</div>
+              <h2 style="margin: 0; font-size: 1.2rem;" data-bind="user.name">Ivan Petrov</h2>
+              <p style="margin: 4px 0; color: var(--muted); font-size: 0.85rem;" data-bind="user.phone">+7 (916) 123-45-67</p>
+            </div>
+
+            <p class="app-label">Account</p>
+            <div class="app-list-item"><div class="app-list-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/></svg></div><div class="app-list-item__body"><h4 class="app-list-item__title">Personal details</h4></div><svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="app-list-item"><div class="app-list-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="app-list-item__body"><h4 class="app-list-item__title">Consents and personal data</h4></div><svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="app-list-item"><div class="app-list-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2h-9l-4 4V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2z"/></svg></div><div class="app-list-item__body"><h4 class="app-list-item__title">Notifications</h4></div><svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="app-list-item"><div class="app-list-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h12M9 6h12M9 18h12M3 12h0M3 6h0M3 18h0"/></svg></div><div class="app-list-item__body"><h4 class="app-list-item__title">All documents</h4></div><svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+
+            <p class="app-label">Help</p>
+            <div class="app-list-item"><div class="app-list-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="app-list-item__body"><h4 class="app-list-item__title">FAQ</h4></div><svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="app-list-item"><div class="app-list-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="app-list-item__body"><h4 class="app-list-item__title">Contact support</h4></div><svg class="app-list-item__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+
+            <button class="app-btn app-btn--ghost" style="margin-top: 24px; color: var(--warn); border-color: var(--warn);" data-go="login">Sign out</button>
+          </div>
+
+          <!-- Loading overlay -->
+          <div class="loading-overlay" id="loading-overlay">
+            <div class="loading-spinner"></div>
+            <div id="loading-label">Please wait…</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ Sidebar ============ -->
+    <aside class="proto-sidebar">
+      <span class="eyebrow">Prototype</span>
+      <h2>17 screens of the future application</h2>
+      <p class="lead">A fully clickable prototype. All the main scenarios — sign-in via Gosuslugi, plot diagnostics, opening a case, SES signing, lawyer matching, and payment.</p>
+
+      <p style="font-size: 0.9rem; color: var(--ink-soft); margin-top: 16px;">
+        This is <strong>not the final design</strong> of the application. After review by the tech lead and the product designer, a Figma file with all variants and states will follow. What you see here is a working skeleton, so that you can walk through the full user journey in 5 minutes.
+      </p>
+
+      <div class="screen-list">
+        <div class="screen-link" data-go="splash"><div class="screen-link__num">1</div><div class="screen-link__body"><h4 class="screen-link__title">Splash</h4><p class="screen-link__sub">Loading</p></div></div>
+        <div class="screen-link" data-go="login"><div class="screen-link__num">2</div><div class="screen-link__body"><h4 class="screen-link__title">Sign in</h4><p class="screen-link__sub">Gosuslugi or SMS</p></div></div>
+        <div class="screen-link" data-go="login-sms"><div class="screen-link__num">3</div><div class="screen-link__body"><h4 class="screen-link__title">SMS sign-in</h4><p class="screen-link__sub">Phone number entry</p></div></div>
+        <div class="screen-link" data-go="otp-verify"><div class="screen-link__num">4</div><div class="screen-link__body"><h4 class="screen-link__title">OTP code</h4><p class="screen-link__sub">SMS confirmation</p></div></div>
+        <div class="screen-link" data-go="home"><div class="screen-link__num">5</div><div class="screen-link__body"><h4 class="screen-link__title">Home</h4><p class="screen-link__sub">Dashboard with cases</p></div></div>
+        <div class="screen-link" data-go="add-parcel"><div class="screen-link__num">6</div><div class="screen-link__body"><h4 class="screen-link__title">Add a plot</h4><p class="screen-link__sub">Cadastre / address / GPS</p></div></div>
+        <div class="screen-link" data-go="diagnose-result"><div class="screen-link__num">7</div><div class="screen-link__body"><h4 class="screen-link__title">Risk card</h4><p class="screen-link__sub">AI-2 diagnostics result</p></div></div>
+        <div class="screen-link" data-go="case-plan"><div class="screen-link__num">8</div><div class="screen-link__body"><h4 class="screen-link__title">Reclamation plan</h4><p class="screen-link__sub">Strategy and steps</p></div></div>
+        <div class="screen-link" data-go="case-detail"><div class="screen-link__num">9</div><div class="screen-link__body"><h4 class="screen-link__title">Case</h4><p class="screen-link__sub">Details and tracker</p></div></div>
+        <div class="screen-link" data-go="pep-sign"><div class="screen-link__num">10</div><div class="screen-link__body"><h4 class="screen-link__title">SES signing</h4><p class="screen-link__sub">Article 5 of Federal Law 63-FZ</p></div></div>
+        <div class="screen-link" data-go="ai-chat"><div class="screen-link__num">11</div><div class="screen-link__body"><h4 class="screen-link__title">AI chat</h4><p class="screen-link__sub">RAG legal consultant</p></div></div>
+        <div class="screen-link" data-go="lawyers-list"><div class="screen-link__num">12</div><div class="screen-link__body"><h4 class="screen-link__title">Lawyers</h4><p class="screen-link__sub">AI-6 routing</p></div></div>
+        <div class="screen-link" data-go="lawyer-detail"><div class="screen-link__num">13</div><div class="screen-link__body"><h4 class="screen-link__title">Lawyer profile</h4><p class="screen-link__sub">Experience, rating, cost</p></div></div>
+        <div class="screen-link" data-go="payment"><div class="screen-link__num">14</div><div class="screen-link__body"><h4 class="screen-link__title">Payment</h4><p class="screen-link__sub">SBP / card</p></div></div>
+        <div class="screen-link" data-go="payment-success"><div class="screen-link__num">15</div><div class="screen-link__body"><h4 class="screen-link__title">Success</h4><p class="screen-link__sub">Federal Law 54-FZ receipt</p></div></div>
+        <div class="screen-link" data-go="documents"><div class="screen-link__num">16</div><div class="screen-link__body"><h4 class="screen-link__title">Documents</h4><p class="screen-link__sub">Searchable archive</p></div></div>
+        <div class="screen-link" data-go="profile"><div class="screen-link__num">17</div><div class="screen-link__body"><h4 class="screen-link__title">Profile</h4><p class="screen-link__sub">Settings and consents</p></div></div>
+      </div>
+
+      <div style="margin-top: 32px; padding: 16px; background: var(--accent-bg); border: 1px solid var(--accent); border-radius: 10px; font-size: 0.9rem;">
+        <strong style="color: var(--accent);">Tip:</strong> try asking a question in the AI chat (screen 11) — for example, "seizure under 101-FZ" or "fines for personal data leaks". The chat simulates RAG answers with citations to articles.
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__cols">
+      <div class="site-footer__about"><a href="index.html" class="brand" style="color: white;"><span class="brand-mark">ЗС</span><span>Земельный Сервис</span></a><p>We protect owners of land plots in Russia.</p></div>
+      <div><h4>Product</h4><a href="services.html">Services</a><a href="how-it-works.html">How it works</a><a href="prototype.html">Prototype</a><a href="regions.html">Regions</a></div>
+      <div><h4>Company</h4><a href="about.html">About</a><a href="for-investors.html">For investors</a><a href="contacts.html">Contacts</a></div>
+      <div><h4>Documents</h4><a href="legal/oferta.html">Public offer</a><a href="legal/policy-pd.html">Personal Data Policy</a><a href="legal/agreement-pep.html">SES Agreement</a></div>
+    </div>
+    <div class="site-footer__bottom"><span>© <span id="current-year">2026</span> KOMPANIYA "ZS" (КОМПАНИЯ "ЗС"). Site version 1.0.</span><span>aslankaa@yandex.ru · +7 (969) 795-55-55</span></div>
+  </div>
+</footer>
+
+<script src="../assets/script.js"></script>
+<script src="assets/prototype-app.js"></script>
+</body>
+</html>

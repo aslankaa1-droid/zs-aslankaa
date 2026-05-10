@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SES Agreement — Zemelny Service</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" type="image/svg+xml" href="../../assets/logo.svg">
+<style>
+  .legal-content { max-width: 800px; margin: 0 auto; }
+  .legal-content h1 { margin-bottom: 32px; }
+  .legal-content h2 { font-size: 1.3rem; margin-top: 32px; }
+  .legal-content p, .legal-content li { color: var(--ink-soft); }
+  .legal-content .meta { background: var(--paper-soft); padding: 16px; border-radius: 8px; margin-bottom: 32px; font-size: 0.9rem; }
+  .legal-content .warn-block { background: var(--warn-soft); border-left: 4px solid var(--warn); padding: 12px 16px; margin: 16px 0; border-radius: 4px; font-size: 0.9rem; }
+</style>
+<link rel="alternate" hreflang="ru" href="../../legal/agreement-pep.html">
+<link rel="alternate" hreflang="en" href="../../en/legal/agreement-pep.html">
+<link rel="alternate" hreflang="fr" href="../../fr/legal/agreement-pep.html">
+<link rel="alternate" hreflang="ar" href="../../ar/legal/agreement-pep.html">
+<link rel="alternate" hreflang="x-default" href="../../legal/agreement-pep.html">
+<link rel="manifest" href="../../manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="../index.html" class="brand"><span class="brand-mark">ЗС</span><span>Земельный Сервис</span><span class="brand-tag">beta</span></a>
+    <nav class="nav">
+      <a href="../index.html">Home</a><a href="../services.html">Services</a><a href="../how-it-works.html">How it works</a><a href="../regions.html">Regions</a><a href="../prototype.html">Prototype</a><a href="../for-investors.html">For investors</a><a href="../about.html">About</a>
+    </nav>
+    <div class="nav-cta"><a href="../contacts.html" class="btn btn-primary btn-sm">Contact us</a></div>
+    <button class="nav-toggle" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  </div>
+  <div class="nav-mobile container">
+    <a href="../index.html">Home</a><a href="../services.html">Services</a><a href="../how-it-works.html">How it works</a><a href="../regions.html">Regions</a><a href="../prototype.html">Prototype</a><a href="../for-investors.html">For investors</a><a href="../about.html">About</a><a href="../contacts.html" class="btn btn-primary">Contact us</a>
+  </div>
+</header>
+
+<main id="main">
+<section style="padding: 48px 0;">
+  <div class="container legal-content">
+
+    <span class="eyebrow">Documents</span>
+    <h1>Agreement on the use of a Simple Electronic Signature (SES)</h1>
+
+    <div class="meta">
+      <strong>Version:</strong> 1.1 (draft)<br>
+      <strong>Date:</strong> 2026-05-09<br>
+      <strong>Legal basis:</strong> Article 5(2) and Article 9 of Federal Law 63-FZ on Electronic Signatures; Order of the Ministry of Digital Development of Russia No. 472 of 28.04.2023<br>
+      <strong>Operator (working name):</strong> <code>КОМПАНИЯ "ЗС"</code> (KOMPANIYA "ZS")
+    </div>
+
+    <div class="warn-block">
+      <strong>Status:</strong> DRAFT — pending lawyer revision before release.
+    </div>
+
+    <h2>1. Parties and subject matter</h2>
+    <p>1.1. This Agreement is concluded between <code>КОМПАНИЯ "ЗС"</code> (KOMPANIYA "ZS") (the working designation of the operator pending registration of the legal entity; registration details are set out at the end of the document) (the "Operator") and any natural or legal person using the "Zemelny Service" mobile and web application (the "User"), and governs the use of a Simple Electronic Signature (the "SES") for the signing of electronic documents within the Service.</p>
+    <p>1.2. The User accepts this Agreement by:</p>
+    <ul>
+      <li>accepting the Public Offer of the Service (registration with the Service);</li>
+      <li>making the first SES-signing of a document within the Service.</li>
+    </ul>
+
+    <h2>2. What an SES means in our Service</h2>
+    <p>2.1. The SES within the Service is generated when the User enters a one-time password (OTP) sent by SMS to the mobile telephone number provided by the User upon registration.</p>
+    <p>2.2. The OTP code is valid for 5 (five) minutes from dispatch and may be used only once.</p>
+
+    <h2>3. Conditions for the legal validity of the SES</h2>
+    <p>3.1. A document signed with the SES within the Service is recognised as legally equivalent to a paper document signed with the User's handwritten signature, in accordance with Article 6 of Federal Law 63-FZ on Electronic Signatures.</p>
+    <p>3.2. The SES within the Service evidences the fact that the electronic signature was generated by the User, provided that all the conditions of this Agreement and the requirements of Federal Law 63-FZ on Electronic Signatures have been complied with.</p>
+
+    <h2>4. User identification at the time of signing</h2>
+    <p>4.1. The User is identified at the moment of SES signing on the basis of the following combined factors:</p>
+    <ul>
+      <li>the mobile telephone number to which the OTP code was sent;</li>
+      <li>knowledge of this OTP code (entered into the Service within 5 minutes);</li>
+      <li>authentication into the Service account (JWT token).</li>
+    </ul>
+    <p>4.2. The signing log (the "SES Log") records, for each signed document: the User ID, the date and time, the IP address, the User-Agent and the document hash.</p>
+    <p>4.3. The SES Log is retained for 5 (five) years from the moment of signing and may be produced upon a court order or a request from a state authority.</p>
+
+    <h2>5. User obligations</h2>
+    <p>5.1. The User undertakes to:</p>
+    <ul>
+      <li>maintain the confidentiality of access to the account and the mobile device;</li>
+      <li>not disclose the OTP code to any third party;</li>
+      <li>notify the Operator without delay of any compromise of the account (loss of the phone, suspicious activity).</li>
+    </ul>
+    <p>5.2. The User is liable for all actions performed using their SES until the Operator has been notified of a compromise.</p>
+
+    <h2>6. Restrictions on the use of the SES</h2>
+    <p>6.1. The SES is used within the Service to sign:</p>
+    <ul>
+      <li>acceptance of the Public Offer;</li>
+      <li>separate consents to the processing of personal data;</li>
+      <li>initial procedural documents (explanatory letters, applications, plans);</li>
+      <li>the engagement letter (offer agreement) with the accredited lawyer.</li>
+    </ul>
+    <p>6.2. The SES IS NOT USED for:</p>
+    <ul>
+      <li>signing procedural documents addressed to the courts (a lawyer's QES is required);</li>
+      <li>real estate transactions requiring notarisation or registration with Rosreestr;</li>
+      <li>any other cases for which a Qualified Electronic Signature (QES) is expressly required by the legislation of the Russian Federation.</li>
+    </ul>
+
+    <h2>7. Disputes</h2>
+    <p>7.1. In the event of a dispute as to whether a document was signed by the User, the SES Log is treated as evidence.</p>
+    <p>7.2. Evidence of an account compromise or SES forgery is established by the result of the Operator's internal investigation and/or by a court ruling.</p>
+
+    <h2>8. Term and termination</h2>
+    <p>8.1. The Agreement is in force from the moment of acceptance by the User until the User ceases to use the Service.</p>
+    <p>8.2. Termination of the Agreement does not affect the legal validity of documents signed during its term.</p>
+    <p>8.3. The applicable law is the substantive law of the Russian Federation.</p>
+
+    <h2>9. Operator's registration details</h2>
+    <p style="font-family: monospace; font-size: 0.9rem;"><code>КОМПАНИЯ "ЗС"</code> (KOMPANIYA "ZS") · OGRN [to be inserted after registration] · INN [to be inserted after registration] · address: [to be inserted after registration]<br>Notification email: aslankaa@yandex.ru (working, pending registration of the service domain)</p>
+
+    <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted);">
+      The full version is held in <code>04_legal/v1.0/agreement_simple_es_v1.0.md</code>.
+    </p>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__cols">
+      <div class="site-footer__about"><a href="../index.html" class="brand" style="color: white;"><span class="brand-mark">ЗС</span><span>Земельный Сервис</span></a><p>We protect owners of land plots in Russia.</p></div>
+      <div><h4>Product</h4><a href="../services.html">Services</a><a href="../how-it-works.html">How it works</a><a href="../prototype.html">Prototype</a><a href="../regions.html">Regions</a></div>
+      <div><h4>Company</h4><a href="../about.html">About</a><a href="../for-investors.html">For investors</a><a href="../contacts.html">Contacts</a></div>
+      <div><h4>Documents</h4><a href="oferta.html">Public offer</a><a href="policy-pd.html">Personal Data Policy</a><a href="agreement-pep.html">SES Agreement</a></div>
+    </div>
+    <div class="site-footer__bottom"><span>© <span id="current-year">2026</span> KOMPANIYA "ZS" (КОМПАНИЯ "ЗС"). Site version 1.0.</span><span>aslankaa@yandex.ru · +7 (969) 795-55-55</span></div>
+  </div>
+</footer>
+<script src="../../assets/script.js"></script>
+</body>
+</html>

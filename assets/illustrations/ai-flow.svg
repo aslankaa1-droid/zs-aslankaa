@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="Поток данных от пользователя через AI к юристу">
+  <defs>
+    <linearGradient id="flowLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2f5d3a" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#c19a3a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#2f5d3a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Connection lines -->
+  <g fill="none" stroke="#6b7570" stroke-width="2" opacity="0.4" stroke-dasharray="3 3">
+    <path d="M 130 200 Q 230 140 350 180"/>
+    <path d="M 130 200 Q 230 260 350 220"/>
+    <path d="M 460 200 Q 560 200 660 200"/>
+  </g>
+
+  <!-- Animated pulse along center axis -->
+  <path d="M 130 200 Q 400 200 660 200" fill="none" stroke="url(#flowLine)" stroke-width="3">
+    <animate attributeName="stroke-dasharray" values="0 800; 200 600; 800 0" dur="3s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- USER (left) -->
+  <g transform="translate(80 200)">
+    <circle cx="0" cy="0" r="48" fill="#2f5d3a" fill-opacity="0.10" stroke="#2f5d3a" stroke-width="2"/>
+    <circle cx="0" cy="-8" r="14" fill="#2f5d3a"/>
+    <path d="M -22 22 Q 0 4 22 22 L 22 38 L -22 38 Z" fill="#2f5d3a"/>
+    <text x="0" y="68" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#1f2a24">Собственник</text>
+    <text x="0" y="86" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#6b7570">кадастр · фото · вопрос</text>
+  </g>
+
+  <!-- AI HUB (center) -->
+  <g transform="translate(400 200)">
+    <!-- Outer hexagon -->
+    <polygon points="0,-65 56,-32 56,32 0,65 -56,32 -56,-32" fill="#c19a3a" fill-opacity="0.10" stroke="#c19a3a" stroke-width="2"/>
+    <!-- Inner pattern (neural net) -->
+    <g stroke="#c19a3a" stroke-width="1.2" fill="none">
+      <line x1="-30" y1="-25" x2="0" y2="0"/>
+      <line x1="0" y1="-30" x2="0" y2="0"/>
+      <line x1="30" y1="-25" x2="0" y2="0"/>
+      <line x1="-30" y1="25" x2="0" y2="0"/>
+      <line x1="0" y1="30" x2="0" y2="0"/>
+      <line x1="30" y1="25" x2="0" y2="0"/>
+    </g>
+    <g fill="#c19a3a">
+      <circle cx="-30" cy="-25" r="4"/>
+      <circle cx="0" cy="-30" r="4"/>
+      <circle cx="30" cy="-25" r="4"/>
+      <circle cx="0" cy="0" r="6"/>
+      <circle cx="-30" cy="25" r="4"/>
+      <circle cx="0" cy="30" r="4"/>
+      <circle cx="30" cy="25" r="4"/>
+    </g>
+
+    <text x="0" y="-78" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#1f2a24">AI Сервис</text>
+    <text x="0" y="80" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#6b7570">7 функций · YandexGPT · GigaChat</text>
+  </g>
+
+  <!-- Data sources (around AI hub) -->
+  <g font-family="-apple-system, sans-serif" font-size="10" fill="#6b7570">
+    <!-- ЕГРН (top) -->
+    <g transform="translate(280 90)">
+      <rect x="-50" y="-18" width="100" height="36" rx="8" fill="#fff" stroke="#6b7570" stroke-width="1.5"/>
+      <text x="0" y="-2" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2a24">ЕГРН</text>
+      <text x="0" y="11" text-anchor="middle" font-size="9">Контур.Реестро</text>
+    </g>
+    <line x1="280" y1="120" x2="380" y2="170" stroke="#6b7570" stroke-width="1.5" opacity="0.5" stroke-dasharray="3 3"/>
+
+    <!-- Спутник (top right) -->
+    <g transform="translate(530 90)">
+      <rect x="-50" y="-18" width="100" height="36" rx="8" fill="#fff" stroke="#6b7570" stroke-width="1.5"/>
+      <text x="0" y="-2" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2a24">Спутник</text>
+      <text x="0" y="11" text-anchor="middle" font-size="9">мониторинг</text>
+    </g>
+    <line x1="510" y1="120" x2="430" y2="170" stroke="#6b7570" stroke-width="1.5" opacity="0.5" stroke-dasharray="3 3"/>
+
+    <!-- 101-ФЗ RAG (bottom left) -->
+    <g transform="translate(280 310)">
+      <rect x="-58" y="-18" width="116" height="36" rx="8" fill="#fff" stroke="#6b7570" stroke-width="1.5"/>
+      <text x="0" y="-2" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2a24">RAG-база</text>
+      <text x="0" y="11" text-anchor="middle" font-size="9">101-ФЗ · ПП-826</text>
+    </g>
+    <line x1="290" y1="290" x2="380" y2="230" stroke="#6b7570" stroke-width="1.5" opacity="0.5" stroke-dasharray="3 3"/>
+
+    <!-- Госуслуги (bottom right) -->
+    <g transform="translate(530 310)">
+      <rect x="-50" y="-18" width="100" height="36" rx="8" fill="#fff" stroke="#6b7570" stroke-width="1.5"/>
+      <text x="0" y="-2" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2a24">ЕСИА</text>
+      <text x="0" y="11" text-anchor="middle" font-size="9">Госуслуги</text>
+    </g>
+    <line x1="510" y1="290" x2="430" y2="230" stroke="#6b7570" stroke-width="1.5" opacity="0.5" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- LAWYER (right) -->
+  <g transform="translate(720 200)">
+    <circle cx="0" cy="0" r="48" fill="#c19a3a" fill-opacity="0.10" stroke="#c19a3a" stroke-width="2"/>
+    <!-- Scales of justice -->
+    <g stroke="#c19a3a" stroke-width="2.5" fill="none" stroke-linecap="round">
+      <line x1="0" y1="-20" x2="0" y2="20"/>
+      <line x1="-18" y1="-12" x2="18" y2="-12"/>
+      <line x1="-18" y1="-12" x2="-18" y2="0"/>
+      <line x1="18" y1="-12" x2="18" y2="0"/>
+      <ellipse cx="-18" cy="3" rx="9" ry="3" fill="#c19a3a" fill-opacity="0.3"/>
+      <ellipse cx="18" cy="3" rx="9" ry="3" fill="#c19a3a" fill-opacity="0.3"/>
+      <line x1="-8" y1="22" x2="8" y2="22"/>
+    </g>
+    <text x="0" y="68" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="14" font-weight="700" fill="#1f2a24">Юрист</text>
+    <text x="0" y="86" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#6b7570">подбор по региону</text>
+  </g>
+</svg>

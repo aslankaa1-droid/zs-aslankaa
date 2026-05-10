@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" role="img" aria-label="Защита прав собственника — щит с документом">
+  <defs>
+    <linearGradient id="shieldFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3d6b50"/>
+      <stop offset="100%" stop-color="#2f5d3a"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fafaf6"/>
+      <stop offset="100%" stop-color="#ece8de"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield -->
+  <path d="M 300 60 L 460 110 L 460 280 Q 460 380 300 440 Q 140 380 140 280 L 140 110 Z"
+        fill="url(#shieldFill)" stroke="#1f3f26" stroke-width="3"/>
+  <path d="M 300 60 L 460 110 L 460 280 Q 460 380 300 440 Q 140 380 140 280 L 140 110 Z"
+        fill="none" stroke="#5a8c6c" stroke-width="2" opacity="0.5"/>
+
+  <!-- Document on shield -->
+  <g transform="translate(220 150)">
+    <!-- Paper -->
+    <path d="M 0 0 L 130 0 L 160 30 L 160 220 L 0 220 Z"
+          fill="url(#paper)" stroke="#c19a3a" stroke-width="2"/>
+    <path d="M 130 0 L 130 30 L 160 30 Z" fill="#c19a3a" fill-opacity="0.2" stroke="#c19a3a" stroke-width="1.5"/>
+
+    <!-- Header text -->
+    <rect x="20" y="40" width="120" height="6" rx="2" fill="#1f2a24"/>
+    <rect x="20" y="55" width="80" height="4" rx="1" fill="#6b7570"/>
+
+    <!-- Body lines -->
+    <rect x="20" y="80" width="120" height="3" rx="1" fill="#6b7570" opacity="0.6"/>
+    <rect x="20" y="92" width="120" height="3" rx="1" fill="#6b7570" opacity="0.6"/>
+    <rect x="20" y="104" width="100" height="3" rx="1" fill="#6b7570" opacity="0.6"/>
+    <rect x="20" y="116" width="120" height="3" rx="1" fill="#6b7570" opacity="0.6"/>
+    <rect x="20" y="128" width="90" height="3" rx="1" fill="#6b7570" opacity="0.6"/>
+
+    <!-- Stamp/seal -->
+    <circle cx="115" cy="170" r="25" fill="none" stroke="#b85d1a" stroke-width="2" opacity="0.6"/>
+    <circle cx="115" cy="170" r="20" fill="none" stroke="#b85d1a" stroke-width="1.5" opacity="0.5"/>
+    <text x="115" y="173" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="6" font-weight="700" fill="#b85d1a" opacity="0.7">УТВ.</text>
+
+    <!-- Signature line -->
+    <line x1="20" y1="200" x2="80" y2="200" stroke="#1f2a24" stroke-width="1.5"/>
+    <path d="M 25 196 Q 35 192 45 196 Q 55 198 65 195 Q 70 198 75 195"
+          fill="none" stroke="#1f2a24" stroke-width="1.5" opacity="0.7"/>
+  </g>
+
+  <!-- Checkmark badge (top right of shield) -->
+  <g transform="translate(420 130)">
+    <circle cx="0" cy="0" r="32" fill="#c19a3a" stroke="#fff" stroke-width="3"/>
+    <path d="M -12 0 L -3 9 L 14 -10" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Legal articles (small ornament) -->
+  <g transform="translate(180 410)" font-family="-apple-system, sans-serif" font-size="10" fill="#1f2a24" opacity="0.7">
+    <text x="0" y="0">101-ФЗ</text>
+    <text x="60" y="0">·</text>
+    <text x="75" y="0">152-ФЗ</text>
+    <text x="135" y="0">·</text>
+    <text x="150" y="0">63-ФЗ</text>
+    <text x="200" y="0">·</text>
+    <text x="215" y="0">КАС РФ</text>
+  </g>
+</svg>

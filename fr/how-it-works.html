@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2f5d3a">
+<meta name="description" content="Comment fonctionne le Service Foncier : scénarios utilisateurs, 7 fonctions IA, intégrations USRN et Gosuslugi, sécurité des données.">
+<title>Fonctionnement — Service Foncier</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="alternate" hreflang="ru" href="../how-it-works.html">
+<link rel="alternate" hreflang="en" href="../en/how-it-works.html">
+<link rel="alternate" hreflang="fr" href="../fr/how-it-works.html">
+<link rel="alternate" hreflang="ar" href="../ar/how-it-works.html">
+<link rel="alternate" hreflang="x-default" href="../how-it-works.html">
+<link rel="manifest" href="../manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Aller au contenu principal</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">ЗС</span>
+      <span>Земельный Сервис · Service Foncier</span>
+      <span class="brand-tag">beta</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="how-it-works.html">Fonctionnement</a>
+      <a href="regions.html">Régions</a>
+      <a href="prototype.html">Prototype</a>
+      <a href="for-investors.html">Investisseurs</a>
+      <a href="about.html">À propos</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contacts.html" class="btn btn-primary btn-sm">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Ouvrir le menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="nav-mobile container">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="how-it-works.html">Fonctionnement</a>
+    <a href="regions.html">Régions</a>
+    <a href="prototype.html">Prototype</a>
+    <a href="for-investors.html">Investisseurs</a>
+    <a href="about.html">À propos</a>
+    <a href="contacts.html" class="btn btn-primary">Contact</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" style="padding-top: clamp(40px, 6vw, 80px); padding-bottom: clamp(32px, 5vw, 56px);">
+  <div class="container">
+    <div style="max-width: 720px;">
+      <span class="eyebrow">Fonctionnement</span>
+      <h1>De l'inquiétude au plan — en 15 minutes</h1>
+      <p class="lead">Le service est conçu pour que tout propriétaire, quel que soit son niveau technique, en tire bénéfice dès la première utilisation. Sans formulaires interminables, sans jargon juridique, sans inscription obligatoire pour le diagnostic de base.</p>
+    </div>
+  </div>
+</section>
+<section class="tight" aria-label="Illustration">
+  <div class="illustration-wrap">
+    <img src="../assets/illustrations/ai-flow.svg" alt="Flux de données de l'utilisateur via l'IA vers l'avocat" class="illustration" loading="lazy" />
+    <p class="illustration-caption">L'IA se place entre le propriétaire et l'avocat — sans remplacer ni l'un ni l'autre.</p>
+  </div>
+</section>
+
+
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">Scénario 1</span>
+      <h2>Diagnostic et travail en autonomie</h2>
+      <p class="lead">Adapté aux dossiers simples : le propriétaire est prêt à exploiter lui-même ou à louer ; la situation ne comporte pas d'irrégularités procédurales de l'autorité compétente.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 1</h4>
+        <h3>Inscription</h3>
+        <p>Via Gosuslugi (ESIA — Système d'identification unifiée) — la voie la plus rapide, le profil est pré-rempli. Ou par code SMS sur le téléphone. Consentement distinct au traitement des données personnelles. E-mail non obligatoire.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 2</h4>
+        <h3>Ajouter une parcelle</h3>
+        <p>Saisissez le numéro cadastral, l'adresse ou activez la géolocalisation. Le service demande en arrière-plan l'extrait USRN via un fournisseur certifié (Kontur.Reestro). Délai : 5–10 minutes.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 3</h4>
+        <h3>Diagnostic AI-2</h3>
+        <p>L'IA analyse l'extrait, les données satellitaires et l'historique du propriétaire. Elle élabore une fiche-risque : niveau de risque (vert/jaune/rouge), indices d'infraction, références aux articles de loi.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 4</h4>
+        <h3>Ouverture du dossier</h3>
+        <p>Si le risque est moyen ou élevé, vous appuyez sur « Ouvrir le dossier ». L'AI-3 génère le pack initial de modèles (note explicative, plan de restauration). Un plan de 5–9 étapes assorties d'échéances apparaît.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 5</h4>
+        <h3>Travail par étapes</h3>
+        <p>À chaque étape, une action utilisateur (téléverser un acte, une photo géolocalisée, envoyer un document au Rosselkhoznadzor). Notifications push à l'approche des échéances. L'AI-1 reconnaît les documents téléversés.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 6</h4>
+        <h3>Signature SES</h3>
+        <p>Chaque document sortant est signé par SES via code SMS. Cette signature a valeur juridique au titre de la Loi 63-FZ. Le journal des signatures est conservé 5 ans.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 7</h4>
+        <h3>Clôture du dossier</h3>
+        <p>Une fois toutes les étapes accomplies et la confirmation de l'autorité compétente reçue, le dossier passe au statut « Clos ». Nous demandons un NPS. Les documents restent dans l'archive pendant 3 ans.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">Scénario 2</span>
+      <h2>Mobilisation d'un juriste accrédité</h2>
+      <p class="lead">Adapté aux dossiers complexes : irrégularités procédurales, risque d'expropriation à brève échéance, parcelle de forte valeur, conflit avec l'autorité compétente.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 1</h4>
+        <h3>Routage AI-6</h3>
+        <p>Sur la base du dossier (région, type de problème, complexité), l'AI-6 propose 2–3 candidats issus du vivier de juristes partenaires accrédités. Vous voyez le profil, la note et le tarif.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 2</h4>
+        <h3>Choix du juriste et contrat</h3>
+        <p>Vous choisissez un juriste. L'AI-3 génère le contrat-offre entre vous et le juriste. Vous signez par SES (code SMS). Le juriste signe par SEQ (KriptoPro).</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 3</h4>
+        <h3>Paiement</h3>
+        <p>Paiement via la solution d'acquisition de la banque partenaire (système de paiement rapide SBP ou carte). Les fonds sont bloqués jusqu'à confirmation de la première phase de prestation. Reçu fiscal au titre de la Loi 54-FZ.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 4</h4>
+        <h3>Accompagnement</h3>
+        <p>Le juriste accepte le dossier sous 4 heures (sinon, transfert au suivant). Chat direct dans l'application. Toutes les actions du juriste sont visibles dans le dossier. Les documents du juriste sont signés par SEQ.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Étape 5</h4>
+        <h3>Clôture</h3>
+        <p>À la fin des prestations — confirmation de votre part et de celle du juriste. Règlement selon le résultat effectif. Remboursement possible en cas de manquements substantiels du juriste.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">Scénario 3</span>
+      <h2>Rôle délégué « j'aide un proche »</h2>
+      <p class="lead">Lorsque le propriétaire est un proche âgé et que le dossier est mené par un fils ou une fille au titre d'une procuration notariée. Mis en œuvre avec protection du titulaire principal.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card" data-reveal>
+        <h3>Comment cela fonctionne</h3>
+        <p>L'aidant crée son propre compte. Il téléverse le scan de la procuration notariée. L'AI-1 OCR vérifie le fondement. Chaque action importante (ouverture de dossier, signature de document, paiement) est confirmée par un code SMS du titulaire principal — même s'il ne possède pas de smartphone.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Protection contre la fraude</h3>
+        <p>Le code SMS est envoyé au numéro du titulaire principal mentionné dans la procuration (numéro vérifié via Gosuslugi). Sans cette confirmation à chaque fois, l'aidant ne peut accomplir d'actes juridiquement significatifs au nom du propriétaire.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Quand l'utiliser</h3>
+        <p>La part des utilisateurs de plus de 60 ans dans la cible est significative. Beaucoup préfèrent qu'un enfant adulte mène le dossier. Ce scénario répond à un besoin réel, pas à une fonctionnalité décorative.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Audit</h3>
+        <p>Toutes les actions de l'aidant sont consignées dans le journal avec mention du mode délégué. Le titulaire principal peut révoquer la délégation à tout moment d'un seul appui.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">7 fonctions IA</span>
+      <h2>Où l'intelligence artificielle intervient</h2>
+      <p class="lead">L'IA est un assistant, pas un substitut au juriste. Toutes les décisions procédurales sont prises soit par le propriétaire, soit par un juriste accrédité muni d'une SEQ. L'IA rend la première étape rapide et étayée.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card" data-reveal>
+        <h3>AI-1 · Reconnaissance de documents (OCR)</h3>
+        <p>Le PDF ou la photo téléversé par l'utilisateur est reconnu et classifié automatiquement (extrait USRN, décision du Rosselkhoznadzor, procès-verbal d'inspection, autre). Précision ≥ 90 % sur les documents standards. Les champs sont extraits en JSON structuré pour traitement ultérieur.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-2 · Diagnostic des risques</h3>
+        <p>Scoring du risque d'expropriation à partir de l'extrait USRN + données satellitaires + historique du propriétaire. Algorithme v1.0 — règles métier (rule-based) + régression logistique sur 100 dossiers annotés. À partir de M7 — passage au gradient boosting avec retour des juristes.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-3 · Génération de documents</h3>
+        <p>Génération de modèles adaptés à la situation : 7 types de documents × adaptation régionale. Modèles `T-01..T-07` dans la base projet. Tous les modèles sont révisés par un juriste accrédité avant publication.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-4 · Chat-conseiller RAG</h3>
+        <p>Chat fondé sur la base normative (Loi 101-FZ, Décret 826, Loi 307-FZ, Loi 152-FZ, Loi 63-FZ + 7 stratégies types + glossaire foncier). Chaque réponse comporte un lien vers l'article. Utilise pgvector + embeddings Yandex/GigaChat.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-5 · Scoring antifraude</h3>
+        <p>Protection contre la falsification de procuration, les tentatives d'ouverture de dossier sur un numéro cadastral d'autrui, les schémas d'usage anormaux. Règles + isolation forest (à partir de M7). Intégration au KYC de la banque partenaire.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-6 · Routage du juriste</h3>
+        <p>Sélection de 2–3 juristes par score pondéré : région + spécialisation + note + charge + proximité géographique. Élimination des juristes à mauvaise réputation. Prise en compte des spécificités régionales (par exemple, à Kalouga — Ministère du Développement économique).</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-7 · Traduction du texte juridique</h3>
+        <p>Convertit les formulations légales complexes en langage humain. Par exemple : « cessation forcée du droit de propriété aux motifs de l'article 6 de la Loi 101-FZ » devient « votre parcelle peut vous être retirée si vous ne l'avez pas exploitée pendant 3 ans ». Aide la cible 60+.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Playbooks régionaux</h3>
+        <p>Chaque fonction IA tient compte des spécificités des 7 régions : autorité compétente (Ministère de l'Agriculture vs Ministère du Développement économique à Kalouga), montant des subventions, mode de notification des co-titulaires, compétence juridictionnelle des recours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">Intégrations</span>
+      <h2>Neuf intégrations pour une expérience fluide</h2>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card" data-reveal>
+        <h3>USRN (Registre fédéral unifié)</h3>
+        <p class="text-muted">Kontur.Reestro (principal) + Parser-API (secours)</p>
+        <p>Obtention de l'extrait à jour en 5–10 minutes. Toutes les intégrations sont officielles, sans scraping.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>ESIA (Gosuslugi)</h3>
+        <p class="text-muted">OAuth 2.0</p>
+        <p>Inscription et authentification avec pré-remplissage du profil. L'onboarding le plus rapide.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Banque partenaire</h3>
+        <p class="text-muted">Acquisition + SBP + Loi 54-FZ</p>
+        <p>Paiements sécurisés via la banque retenue (Tinkoff / Tochka / Alfa). Reçu fiscal.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Fournisseurs LLM</h3>
+        <p class="text-muted">YandexGPT 5.1 Pro + GigaChat 2/Ultra</p>
+        <p>Routage A/B pour améliorer la qualité et réduire le coût. Les deux écosystèmes sont en Russie.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Passerelle SMS</h3>
+        <p class="text-muted">Devino + SMS-Aero (secours)</p>
+        <p>Livraison des codes SMS pour l'authentification et la signature SES. SLA ≥ 99 %.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Notifications push</h3>
+        <p class="text-muted">RuStore Push (Android) + APNs (iOS) + FCM</p>
+        <p>Livraison des notifications d'échéances et de mises à jour du dossier. Sans tracking.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>E-mail</h3>
+        <p class="text-muted">SDEK-Mail ou Mailgun-RU</p>
+        <p>Courriels transactionnels (rapports, restauration, confirmations). Optionnel — sans rattachement obligatoire.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Yandex.OPC</h3>
+        <p class="text-muted">Conformité Loi 149-FZ ORI</p>
+        <p>Envoi des copies obligatoires des journaux d'audit à Yandex.OPC. Conservation : 1 an conformément à la loi.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>KriptoPro</h3>
+        <p class="text-muted">SEQ des juristes partenaires</p>
+        <p>Les juristes signent les actes procéduraux par SEQ via le SDK KriptoPro. Valeur juridique au titre de la Loi 63-FZ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="cta-banner" data-reveal>
+      <h2>Voir le tout en action</h2>
+      <p>Le prototype de la future application fonctionne directement dans le navigateur — les 17 écrans, la navigation, les scénarios IA.</p>
+      <a href="prototype.html" class="btn btn-light btn-lg">Ouvrir le prototype
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__cols">
+      <div class="site-footer__about">
+        <a href="index.html" class="brand" style="color: white;">
+          <span class="brand-mark">ЗС</span>
+          <span>Земельный Сервис · Service Foncier</span>
+        </a>
+        <p>Nous protégeons les propriétaires fonciers en Russie.</p>
+      </div>
+      <div>
+        <h4>Produit</h4>
+        <a href="services.html">Services</a>
+        <a href="how-it-works.html">Fonctionnement</a>
+        <a href="prototype.html">Prototype</a>
+        <a href="regions.html">Régions</a>
+      </div>
+      <div>
+        <h4>Société</h4>
+        <a href="about.html">À propos</a>
+        <a href="for-investors.html">Investisseurs</a>
+        <a href="contacts.html">Contact</a>
+      </div>
+      <div>
+        <h4>Documents</h4>
+        <a href="legal/oferta.html">Offre publique</a>
+        <a href="legal/policy-pd.html">Politique des données personnelles</a>
+        <a href="legal/agreement-pep.html">Convention SES</a>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© <span id="current-year">2026</span> КОМПАНИЯ "ЗС". Version du site 1.0.</span>
+      <span>aslankaa@yandex.ru · +7 (969) 795-55-55</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/script.js"></script>
+</body>
+</html>

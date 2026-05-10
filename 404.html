@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2f5d3a">
+<meta name="robots" content="noindex">
+<title>404 — Страница не найдена · Земельный Сервис</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="manifest" href="manifest.json">
+<style>
+  .err-page {
+    min-height: calc(100vh - 80px);
+    display: grid;
+    place-items: center;
+    padding: 32px var(--gutter) 64px;
+  }
+  .err-content { text-align: center; max-width: 560px; }
+  .err-code {
+    font-size: clamp(80px, 18vw, 160px);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 16px;
+    letter-spacing: -0.04em;
+  }
+  .err-content h1 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: 12px; }
+  .err-content p.lead { color: var(--ink-soft); margin-bottom: 32px; }
+  .err-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .err-translations {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .err-translations span { display: block; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">ЗС</span>
+      <span>Земельный Сервис</span>
+      <span class="brand-tag">beta</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="services.html">Услуги</a>
+      <a href="how-it-works.html">Как работает</a>
+      <a href="regions.html">Регионы</a>
+      <a href="prototype.html">Прототип</a>
+      <a href="for-investors.html">Инвесторам</a>
+      <a href="about.html">О нас</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contacts.html" class="btn btn-primary btn-sm">Связаться</a>
+    </div>
+    <button class="nav-toggle" aria-label="Открыть меню"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  </div>
+  <div class="nav-mobile container">
+    <a href="index.html">Главная</a>
+    <a href="services.html">Услуги</a>
+    <a href="how-it-works.html">Как работает</a>
+    <a href="regions.html">Регионы</a>
+    <a href="prototype.html">Прототип</a>
+    <a href="for-investors.html">Инвесторам</a>
+    <a href="about.html">О нас</a>
+    <a href="contacts.html" class="btn btn-primary">Связаться</a>
+  </div>
+</header>
+
+<main class="err-page">
+  <div class="err-content">
+    <div class="err-code">404</div>
+    <h1>Эта страница не найдена</h1>
+    <p class="lead">Возможно, она переехала или была удалена. Попробуйте начать с главной или вернуться назад.</p>
+    <div class="err-actions">
+      <a href="index.html" class="btn btn-primary btn-lg">На главную</a>
+      <a href="javascript:history.back()" class="btn btn-ghost btn-lg">← Вернуться</a>
+    </div>
+
+    <div class="err-translations">
+      <span>🇬🇧 Page not found · <a href="en/index.html">Go home</a></span>
+      <span>🇫🇷 Page introuvable · <a href="fr/index.html">Accueil</a></span>
+      <span>🇸🇦 الصفحة غير موجودة · <a href="ar/index.html">الرئيسية</a></span>
+    </div>
+  </div>
+</main>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

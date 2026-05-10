@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Карта сайта со всеми 44 страницами (11 страниц × 4 языка). hreflang — для языковых альтернатив. -->
+
+  <url>
+    <loc>/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/index.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>/services.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/services.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/services.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/services.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/services.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>/how-it-works.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/how-it-works.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/how-it-works.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/how-it-works.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/how-it-works.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>/regions.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/regions.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/regions.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/regions.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/regions.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>/prototype.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/prototype.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/prototype.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/prototype.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/prototype.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/about.html"/>
+    <changefreq>quarterly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>/for-investors.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/for-investors.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/for-investors.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/for-investors.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/for-investors.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>/contacts.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/contacts.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/contacts.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/contacts.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/contacts.html"/>
+    <changefreq>quarterly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>/legal/oferta.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/legal/oferta.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/legal/oferta.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/legal/oferta.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/legal/oferta.html"/>
+    <changefreq>quarterly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>/legal/policy-pd.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/legal/policy-pd.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/legal/policy-pd.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/legal/policy-pd.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/legal/policy-pd.html"/>
+    <changefreq>quarterly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>/legal/agreement-pep.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="/legal/agreement-pep.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/legal/agreement-pep.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="/fr/legal/agreement-pep.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="/ar/legal/agreement-pep.html"/>
+    <changefreq>quarterly</changefreq>
+    <priority>0.4</priority>
+  </url>
+</urlset>

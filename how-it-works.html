@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2f5d3a">
+<meta name="description" content="Как работает Земельный Сервис: пользовательские сценарии, 7 ИИ-функций, интеграции с ЕГРН и Госуслугами, безопасность данных.">
+<title>Как работает — Земельный Сервис</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="alternate" hreflang="ru" href="how-it-works.html">
+<link rel="alternate" hreflang="en" href="en/how-it-works.html">
+<link rel="alternate" hreflang="fr" href="fr/how-it-works.html">
+<link rel="alternate" hreflang="ar" href="ar/how-it-works.html">
+<link rel="alternate" hreflang="x-default" href="how-it-works.html">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Перейти к основному содержанию</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">ЗС</span>
+      <span>Земельный Сервис</span>
+      <span class="brand-tag">beta</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="services.html">Услуги</a>
+      <a href="how-it-works.html">Как работает</a>
+      <a href="regions.html">Регионы</a>
+      <a href="prototype.html">Прототип</a>
+      <a href="for-investors.html">Инвесторам</a>
+      <a href="about.html">О нас</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contacts.html" class="btn btn-primary btn-sm">Связаться</a>
+    </div>
+    <button class="nav-toggle" aria-label="Открыть меню">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="nav-mobile container">
+    <a href="index.html">Главная</a>
+    <a href="services.html">Услуги</a>
+    <a href="how-it-works.html">Как работает</a>
+    <a href="regions.html">Регионы</a>
+    <a href="prototype.html">Прототип</a>
+    <a href="for-investors.html">Инвесторам</a>
+    <a href="about.html">О нас</a>
+    <a href="contacts.html" class="btn btn-primary">Связаться</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" style="padding-top: clamp(40px, 6vw, 80px); padding-bottom: clamp(32px, 5vw, 56px);">
+  <div class="container">
+    <div style="max-width: 720px;">
+      <span class="eyebrow">Как работает</span>
+      <h1>От тревоги до плана — за 15 минут</h1>
+      <p class="lead">Сервис устроен так, чтобы любой собственник, независимо от технической подготовки, смог получить пользу с первого захода. Без длинных форм, без юридического жаргона, без обязательных регистраций для базовой диагностики.</p>
+    </div>
+  </div>
+</section>
+<section class="tight" aria-label="Illustration">
+  <div class="illustration-wrap">
+    <img src="assets/illustrations/ai-flow.svg" alt="Поток данных от пользователя через AI к юристу" class="illustration" loading="lazy" />
+    <p class="illustration-caption">AI работает между собственником и юристом, не заменяя ни одного из них.</p>
+  </div>
+</section>
+
+
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">Сценарий 1</span>
+      <h2>Самостоятельная диагностика и работа</h2>
+      <p class="lead">Подходит для простых кейсов: собственник готов сам обрабатывать или сдавать в аренду; ситуация без процессуальных нарушений уполномоченного органа.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 1</h4>
+        <h3>Регистрация</h3>
+        <p>Через Госуслуги (ЕСИА) — самый быстрый путь, профиль предзаполнен. Или по СМС-коду на телефон. Раздельное согласие на обработку ПДн. Без обязательного email.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 2</h4>
+        <h3>Добавить участок</h3>
+        <p>Введите кадастровый номер, адрес или включите геопозицию. Сервис в фоне запрашивает выписку ЕГРН через сертифицированного провайдера (Контур.Реестро). Время — 5–10 минут.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 3</h4>
+        <h3>Диагностика AI-2</h3>
+        <p>AI анализирует выписку, спутниковые данные и историю собственника. Формирует риск-карточку: уровень риска (зелёный/жёлтый/красный), признаки нарушения, ссылки на статьи закона.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 4</h4>
+        <h3>Открытие кейса</h3>
+        <p>Если риск средний или высокий — нажимаете «Открыть кейс». AI-3 генерирует первичный пакет шаблонов (объяснительная, план восстановления). Появляется план из 5–9 шагов с дедлайнами.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 5</h4>
+        <h3>Работа по шагам</h3>
+        <p>На каждом шаге — действие пользователя (загрузить акт, фото с GPS, отправить документ в Россельхознадзор). Push-уведомления о дедлайнах. AI-1 распознаёт загруженные документы.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 6</h4>
+        <h3>Подписание ПЭП</h3>
+        <p>Каждый исходящий документ подписывается ПЭП через СМС-код. Это юридически значимо по 63-ФЗ. Журнал подписаний хранится 5 лет.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 7</h4>
+        <h3>Закрытие кейса</h3>
+        <p>После выполнения всех шагов и получения подтверждения от уполномоченного органа — кейс переходит в статус «Закрыт». Запрашиваем NPS. Документы остаются в архиве 3 года.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">Сценарий 2</span>
+      <h2>Подключение аккредитованного юриста</h2>
+      <p class="lead">Подходит для сложных кейсов: процессуальные нарушения, риск изъятия в ближайшие месяцы, большая стоимость участка, конфликт с уполномоченным органом.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 1</h4>
+        <h3>AI-6 маршрутизация</h3>
+        <p>На основании кейса (регион, тип проблемы, сложность) AI-6 предлагает 2–3 кандидатов из базы аккредитованных юристов-партнёров. Видите профиль, рейтинг, ставку.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 2</h4>
+        <h3>Выбор юриста и договор</h3>
+        <p>Выбираете юриста. AI-3 генерирует договор-оферту между вами и юристом. Подписываете ПЭП (СМС-код). Юрист подписывает УКЭП (КриптоПро).</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 3</h4>
+        <h3>Оплата</h3>
+        <p>Оплата через эквайринг банка-партнёра (СБП или карта). Средства блокируются до подтверждения первого этапа работ юриста. Фискальный чек по 54-ФЗ.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 4</h4>
+        <h3>Сопровождение</h3>
+        <p>Юрист принимает кейс в течение 4 часов (иначе — следующему). Прямой чат в приложении. Все действия юриста — видны в кейсе. Документы юриста подписываются УКЭП.</p>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <h4>Шаг 5</h4>
+        <h3>Закрытие</h3>
+        <p>По окончании работ — подтверждение от вас и юриста. Расчёт по фактическому исходу. Возможен возврат средств при существенных нарушениях со стороны юриста.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">Сценарий 3</span>
+      <h2>Делегированная роль «помогаю родственнику»</h2>
+      <p class="lead">Когда собственник — пожилой родственник, и кейс ведёт сын/дочь по нотариальной доверенности. Реализовано с защитой основного владельца.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card" data-reveal>
+        <h3>Как работает</h3>
+        <p>Помощник регистрирует свой аккаунт. Загружает скан нотариальной доверенности. AI-1 OCR проверяет основания. Каждое важное действие (открытие кейса, подписание документа, оплата) подтверждается СМС-кодом основного владельца — даже если у него нет смартфона.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Защита от подделки</h3>
+        <p>СМС-код приходит на телефон основного владельца, который указан в доверенности (мы проверяем этот номер через Госуслуги). Без подтверждения каждый раз помощник не может выполнить юридически значимые действия от имени собственника.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Когда применяется</h3>
+        <p>Доля пользователей 60+ в целевой аудитории — существенная. Многие из них предпочитают, чтобы кейс вёл взрослый ребёнок. Сценарий — реальная нужда, не «фича для красоты».</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Аудит</h3>
+        <p>Все действия помощника записываются в журнал с указанием делегированного режима. Основной владелец в любой момент может отозвать делегирование одним нажатием.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">7 ИИ-функций</span>
+      <h2>Где работает искусственный интеллект</h2>
+      <p class="lead">AI — помощник, не замена юриста. Все процессуальные решения принимает либо собственник, либо аккредитованный юрист с УКЭП. AI делает первый шаг быстрым и обоснованным.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card" data-reveal>
+        <h3>AI-1 · Распознавание документов (OCR)</h3>
+        <p>Загруженный пользователем PDF или фото распознаётся, классифицируется автоматически (выписка ЕГРН, решение Россельхознадзора, акт обследования, иное). Точность ≥ 90% на типовых документах. Поля извлекаются в структурированный JSON для дальнейшей обработки.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-2 · Диагностика рисков</h3>
+        <p>Скоринг риска изъятия по выписке ЕГРН + спутниковым данным + истории собственника. Алгоритм v1.0 — правила (rule-based) + логистическая регрессия на 100 размеченных кейсах. С М7 — переход на градиентный бустинг с учётом фидбэка от юристов.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-3 · Генерация документов</h3>
+        <p>Генерация шаблонов под конкретную ситуацию: 7 типов документов × региональная адаптация. Шаблоны — `T-01..T-07` в проектной базе. Все шаблоны прошли ревизию аккредитованного юриста до релиза.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-4 · Чат-консультант RAG</h3>
+        <p>Чат на базе нормативной базы (101-ФЗ, ПП-826, ФЗ-307, 152-ФЗ, 63-ФЗ + 7 типовых стратегий + земельный глоссарий). Каждый ответ — со ссылкой на статью. Использует pgvector + Yandex/GigaChat embeddings.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-5 · Антифрод-скоринг</h3>
+        <p>Защита от подделки доверенности, попыток открытия кейса на чужой кадастровый номер, аномальных паттернов использования. Правила + изоляционный лес (с М7). Интеграция с KYC банка-партнёра.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-6 · Маршрутизация юриста</h3>
+        <p>Подбор 2–3 юристов по weighted score: регион + специализация + рейтинг + загрузка + географическая близость. Отсев юристов с низкой репутацией. Учёт региональной специфики (например, в Калуге — Минэкономразвития).</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>AI-7 · Перевод юр.текста</h3>
+        <p>Превращает сложные формулировки закона в простой человеческий язык. Например, «принудительное прекращение права собственности по основаниям ст. 6 101-ФЗ» → «у вас могут забрать участок, если 3 года не использовали». Помогает 60+ аудитории.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Региональные плейбуки</h3>
+        <p>Каждая ИИ-функция учитывает специфику 7 регионов: уполномоченный орган (Минсельхоз vs Минэкономразвития в Калуге), размер субсидий, способ извещения дольщиков, подсудность исков.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="eyebrow">Интеграции</span>
+      <h2>Девять интеграций для бесшовного опыта</h2>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card" data-reveal>
+        <h3>ЕГРН</h3>
+        <p class="text-muted">Контур.Реестро (основной) + Parser-API (резерв)</p>
+        <p>Получение актуальной выписки за 5–10 минут. Все интеграции — официальные, без скрэпинга.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>ЕСИА (Госуслуги)</h3>
+        <p class="text-muted">OAuth 2.0</p>
+        <p>Регистрация и аутентификация с предзаполнением профиля. Самый быстрый онбординг.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Банк-партнёр</h3>
+        <p class="text-muted">Эквайринг + СБП + 54-ФЗ</p>
+        <p>Безопасные платежи через выбранный банк (Тинькофф / Точка / Альфа). Фискальный чек.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>LLM-провайдеры</h3>
+        <p class="text-muted">YandexGPT 5.1 Pro + GigaChat 2/Ultra</p>
+        <p>A/B routing для повышения качества и снижения стоимости. Обе экосистемы — в РФ.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>СМС-шлюз</h3>
+        <p class="text-muted">Devino + СМС-Аэро (резерв)</p>
+        <p>Доставка СМС-кодов для аутентификации и подписания ПЭП. SLA ≥ 99%.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Push-уведомления</h3>
+        <p class="text-muted">RuStore Push (Android) + APNs (iOS) + FCM</p>
+        <p>Доставка уведомлений о дедлайнах и обновлениях кейса. Без отслеживания.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Email</h3>
+        <p class="text-muted">СДЭК-Mail или Mailgun-РФ</p>
+        <p>Транзакционные письма (отчёты, восстановление, подтверждения). Опционально — без обязательной привязки.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Yandex.OPC</h3>
+        <p class="text-muted">Соответствие 149-ФЗ ОРИ</p>
+        <p>Отправка обязательных копий аудит-логов в Yandex.OPC. Retention 1 год по закону.</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>КриптоПро</h3>
+        <p class="text-muted">УКЭП юристов-партнёров</p>
+        <p>Юристы подписывают процессуальные документы УКЭП через КриптоПро SDK. Юр.значимость по 63-ФЗ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="cta-banner" data-reveal>
+      <h2>Увидеть всё в действии</h2>
+      <p>Прототип будущего приложения работает прямо в браузере — все 17 экранов, навигация, AI-сценарии.</p>
+      <a href="prototype.html" class="btn btn-light btn-lg">Открыть прототип
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__cols">
+      <div class="site-footer__about">
+        <a href="index.html" class="brand" style="color: white;">
+          <span class="brand-mark">ЗС</span>
+          <span>Земельный Сервис</span>
+        </a>
+        <p>Защищаем собственников земельных участков в России.</p>
+      </div>
+      <div>
+        <h4>Продукт</h4>
+        <a href="services.html">Услуги</a>
+        <a href="how-it-works.html">Как работает</a>
+        <a href="prototype.html">Прототип</a>
+        <a href="regions.html">Регионы</a>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <a href="about.html">О нас</a>
+        <a href="for-investors.html">Инвесторам</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+      <div>
+        <h4>Документы</h4>
+        <a href="legal/oferta.html">Публичная оферта</a>
+        <a href="legal/policy-pd.html">Политика ПДн</a>
+        <a href="legal/agreement-pep.html">Соглашение о ПЭП</a>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© <span id="current-year">2026</span> КОМПАНИЯ "ЗС". Версия сайта 1.0.</span>
+      <span>aslankaa@yandex.ru · +7 (969) 795-55-55</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
