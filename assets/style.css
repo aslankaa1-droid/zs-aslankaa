@@ -660,11 +660,14 @@ section.bg-dark .eyebrow { color: var(--gold); }
 
 @media (min-width: 768px) {
   .pricing { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
   .pricing.pricing--3col { grid-template-columns: repeat(3, 1fr); }
 }
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .pricing.pricing--3col { grid-template-columns: 1fr; }
 }
+.pricing > * { min-width: 0; }
 
 /* v2.0 update banner */
 .v2-banner {
