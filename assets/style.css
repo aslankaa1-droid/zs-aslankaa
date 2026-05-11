@@ -449,6 +449,16 @@ section.bg-dark .eyebrow { color: var(--gold); }
   .nav a { font-size: 0.88rem; }
 }
 
+/* Wider container + larger hero on very large screens (≥1600px, 4K, etc.) */
+@media (min-width: 1600px) {
+  :root { --container: 1440px; }
+}
+@media (min-width: 2400px) {
+  :root { --container: 1600px; }
+  body { font-size: 17px; }
+  .hero h1 { font-size: clamp(2.5rem, 3.4vw, 4.2rem); }
+}
+
 /* ==========================================================================
    Buttons
    ========================================================================== */
