@@ -441,6 +441,8 @@ section.bg-dark .eyebrow { color: var(--gold); }
   .nav-toggle { display: none; }
   .nav-cta { margin-left: 0; }
   .nav a { white-space: nowrap; }
+  .brand { flex-shrink: 0; }
+  .brand > span:not(.brand-mark):not(.brand-tag) { overflow: visible; text-overflow: clip; }
 }
 @media (min-width: 1280px) and (max-width: 1499px) {
   .nav { gap: 14px; }
