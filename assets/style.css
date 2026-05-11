@@ -440,6 +440,11 @@ section.bg-dark .eyebrow { color: var(--gold); }
   .nav { display: flex; }
   .nav-toggle { display: none; }
   .nav-cta { margin-left: 0; }
+  .nav a { white-space: nowrap; }
+}
+@media (min-width: 1280px) and (max-width: 1499px) {
+  .nav { gap: 14px; }
+  .nav a { font-size: 0.88rem; }
 }
 
 /* ==========================================================================
