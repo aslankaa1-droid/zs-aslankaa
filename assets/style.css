@@ -660,7 +660,22 @@ section.bg-dark .eyebrow { color: var(--gold); }
 
 @media (min-width: 768px) {
   .pricing { grid-template-columns: repeat(2, 1fr); }
+  .pricing.pricing--3col { grid-template-columns: repeat(3, 1fr); }
 }
+@media (max-width: 767px) {
+  .pricing.pricing--3col { grid-template-columns: 1fr; }
+}
+
+/* v2.0 update banner */
+.v2-banner {
+  background: linear-gradient(90deg, #2f5d3a 0%, #3d7a4a 100%);
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+.v2-banner a:hover { opacity: 0.85; }
 
 /* ==========================================================================
    Stats / metrics
