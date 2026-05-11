@@ -676,6 +676,18 @@ section.bg-dark .eyebrow { color: var(--gold); }
   z-index: 60;
 }
 .v2-banner a:hover { opacity: 0.85; }
+@media (max-width: 767px) {
+  .v2-banner { position: static; }
+  .v2-banner .v2-banner__long { display: none; }
+  .v2-banner .v2-banner__sep { display: none; }
+}
+
+/* Pricing strong cell: avoid huge price text breaking the card on narrow screens */
+@media (max-width: 767px) {
+  .price strong { font-size: 1.7rem; line-height: 1.1; }
+  .price { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .price span { font-size: 0.85rem; }
+}
 
 /* ==========================================================================
    Stats / metrics
