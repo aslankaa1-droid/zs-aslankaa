@@ -684,9 +684,9 @@ section.bg-dark .eyebrow { color: var(--gold); }
 
 /* Pricing strong cell: avoid huge price text breaking the card on narrow screens */
 @media (max-width: 767px) {
-  .price strong { font-size: 1.7rem; line-height: 1.1; }
-  .price { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .price span { font-size: 0.85rem; }
+  .tariff .price { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .tariff .price strong { font-size: 1.7rem; line-height: 1.1; }
+  .tariff .price span { font-size: 0.85rem; }
 }
 
 /* ==========================================================================
